@@ -6,4 +6,8 @@ class Wallet
   def balance
     @client.balance
   end
+
+  def redistribute
+    # BC.sendmany ""
+  end
 end

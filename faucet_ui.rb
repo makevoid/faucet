@@ -57,6 +57,14 @@ class FaucetUI < Roda
       end
     end
 
+    r.on "admin" do
+      r.is do
+        r.get do
+          view "admin"
+        end
+      end
+    end
+
     r.assets
   end
 
