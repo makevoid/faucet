@@ -3,11 +3,21 @@
 %html
   %head
     %meta{ charset: "utf-8" }
+    %meta{ name: "microtip", content: "#{FC.address_main}" }
     %title #{title} Faucet
+    =# assets :css
+
     :css
       body {
         background: #FAFAFA;
         font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+      }
+
+      .container {
+        width: 90%;
+        margin: 0 auto;
+      }
+      .content {
       }
 
       a {
@@ -23,8 +33,38 @@
         display: inline-block;
       }
 
+      .left, .right {
+        float: left;
+        width: 40%;
+        margin-right: 5%;
+      }
+
+      .left {
+
+      }
+
+      .right {
+
+      }
+
+      .clear{
+        clear: both
+      }
+
+      .black a {
+        color: black
+      }
+
+      .s10{ height: 10px; }
+      .s20{ height: 20px; }
+      .s30{ height: 30px; }
+      .s40{ height: 40px; }
+      .s50{ height: 50px; }
+
 
   %body
-    %h1 #{title} Faucet
-    %section.content
-      = yield
+    .container
+      %h1
+        %a{ href: "https://protip.is"} #{title} Faucet
+      %section.content
+        = yield

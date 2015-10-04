@@ -1,5 +1,6 @@
 require_relative 'wallet'
 
+
 class Faucet
 
   attr_reader :address, :addresses
@@ -12,6 +13,7 @@ class Faucet
   def main_addr
     @address[:btc]
   end
+  alias :address_main :main_addr
 
   def balance
     @wallet.balance

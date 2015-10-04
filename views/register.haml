@@ -1,1 +1,115 @@
 %h2 Register
+
+/ alternative for: https://www.google.com/recaptcha/admin#list
+=#
+
+%h3 Move the mouse on this box, then click
+
+- # CSS components
+:css
+  .canvas, .canvas .box {
+    border-radius: 6px;
+  }
+  .canvas {
+    width: 300px;
+    height: 100px;
+    background: #CACACA;
+    border: 2px solid #999;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  .canvas .box {
+    position: absolute;
+    background: #BBB;
+    width:  50px;
+    height: 50px;
+    top:  25%;
+    left: 15%;
+    margin-right: 5%;
+    border: 1px solid #888;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      background: #999;
+    }
+    to {
+      background: #0D0;
+      border: 1px solid #080;
+      cursor: pointer;
+    }
+  }
+
+  .canvas .box:hover, .canvas .box.done {
+    animation: fadeIn 2s alternate;
+    background: #0D0;
+    border: 1px solid #080;
+    cursor: pointer;
+  }
+  .canvas .text {
+    position: absolute;
+    right: 20%;
+    top:  42%;
+    display: inline-block;
+    font-weight: bold;
+  }
+  .canvas:hover .text:before {
+    font-weight: normal;
+    content: attr(data-text) " ";
+  }
+
+.canvas.captcha
+  .box
+  .text{ data: { text: "Hover the box", text_click: "Click!", text_done: "Done!" } }
+.s20
+
+= assets :js
+
+:javascript
+  var qs = function(value) {
+    return document.querySelector(value)
+  }
+
+  var movements = []
+  var box = ".captcha .box"
+
+  var box_clicked = function() {
+    qs(box).classList.add("done")
+    var label  = qs(".text").innerHTML = "Done!"
+    console.log("movements:", movements)
+  }
+
+  var canvas_entered = function() {
+    setTimeout(
+      function(){
+        qs(box).addEventListener("click", box_clicked)
+        var label  = qs(".text").dataset
+        label.text = label.textClick
+      },
+      2000
+    )
+  }
+
+  var mouse_move_base = function(evt) {
+    movements.push([evt.mouseX, evt.mouseY])
+  }
+  var mouse_move = _.throttle(mouse_move_base, 30);
+
+
+  var canvas = qs(".captcha .box")
+  canvas.addEventListener("mouseover", canvas_entered)
+  canvas.addEventListener("mousemove", mouse_move)
+
+
+  // canvas.classList.push "done"
+  // console.log(box.classList)
+
+=# TODO: move in external js: %script{ async: true,  }
+
+%h3 Make a Donation
+
+
+= partial "donate"
