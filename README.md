@@ -5,13 +5,13 @@ This is an Alpha Prototype of a Bitcoin faucet
 Use at your own risk tm.
 
 
-You'll probably need to fork, if your is an advanced use case, the bitcoin-client library/gem and change, add, tweak some actions, don't worry the library is minimal, it's all in the `api.rb` file 
+You'll probably need to fork, if your is an advanced use case, the bitcoin-client library/gem and change, add, tweak some actions, don't worry the library is minimal, it's all in the `api.rb` file
 
 The concept is, if you are connected to a Bitcoin Core node via a Json Rpc Api you are connected in the best possible available way to the blokchain, and it should be always easy to update (you just download the latest version of bitcoin core from bitcoin.org or from github/bitcoin/bitcoin)
 
 Roda provides a nice API (Ruby) at gread speed! (It's only a thin layer over Rack, efficency of routing-trees and modularity through a good plugin system)
 
-This time I can really say that Routing-Tree frameworks like Roda not only let your app runs faster, but because of routes like 
+This time I can really say that Routing-Tree frameworks like Roda not only let your app runs faster, but because of routes like
 
 ```rb
 # For APIs
@@ -31,21 +31,61 @@ This time I can really say that Routing-Tree frameworks like Roda not only let y
 r.on ":id" do |id|
   r.is do
     resource = Resource.get id
-    
-    r.get 
+
+    r.get
       resource
-  
+
     r.put
       resource.put params
       resource
+
+
+```
+
 ----
 
-this way you don't have to use before filter
+FIP (faucet improvement proposal)
+
+add configs
+
+Faucet config
+
+# simple faucet
+#
+# Faucet.config (
+#   share: "0.05" 1/20th of the donations present
+# )
+
+
+# protip faucet
+#
+# Faucet.config(
+#   treshold: "10",
+#   share: "0.1" # 1/10th
+# )
+
+
+
+----
+
+### TODOs
+
+- PR to Roda to accept hashes `faucet_ui.rb` `:19`
+- move in external css `views/layout.haml` `:10`
+- :markdown `views/redistribute.haml` `:5`
+- move in external js: %script{ async: true,  } `views/register.haml` `:114`
+
+
+
+----
+
+this way you don#'t have to use before filter
+
 
 also if you group the specs the same way (lets and before blocks in rspec) you end up with a very flexible structure that lets you quickly but effectively spec your core requirements or to organize a more complete spec suite >80% coverage
 
 
-# Old readme from 
+# Old readme from
 
 # BitcoinClient usage example
 Simple example on how to start an app using bitcoin-client or similar 1:1 bitcoind api via JSON
