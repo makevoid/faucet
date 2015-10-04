@@ -1,0 +1,30 @@
+- title = "❤ ProTip"
+!!!
+%html
+  %head
+    %meta{ charset: "utf-8" }
+    %title #{title} Faucet
+    :css
+      body {
+        background: #FAFAFA;
+        font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+        color: #72B73E;
+      }
+
+      h1, h2, h3 {
+        color: #72B73E;
+      }
+
+      pre {
+        display: inline-block;
+      }
+
+
+  %body
+    %h1 #{title} Faucet
+    %section.content
+      = yield
