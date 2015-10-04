@@ -1,3 +1,16 @@
+# Readme
+
+This is an Alpha Prototype of a Bitcoin faucet
+
+Use at your own risk tm.
+
+
+
+
+----
+
+# Old readme from 
+
 # BitcoinClient usage example
 Simple example on how to start an app using bitcoin-client or similar 1:1 bitcoind api via JSON
 
