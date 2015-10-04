@@ -17,10 +17,24 @@ class Wallet
   end
 
   def sendmany(addresses, amount)
-    addresses_w_amounts = addresses.map do |addr|
-      "#{addr}:#{amount}"
+    amount = "%.8f" % 0.000001
+    # amount = 0.000001
+    # amount = "0.000001".to_s
+    # addresses_w_amounts = addresses.map do |addr|
+    #   "#{addr}:#{amount}"
+    # end.join ","
+    # addresses_w_amounts = "{#{addresses_w_amounts}}"
+
+
+    amounts = {}
+    addresses.each do |addr|
+      amounts[addr] = amount
     end
-    @client.sendmany addresses_w_amounts.join ""
+
+    # bc sendmany "" '{"19e2eU15xKbM9pyDwjFsBJFaSeKoDxp8YT":0.00001}'
+    @client.sendmany "", amounts
+
+    # @client.sendtoaddress "19e2eU15xKbM9pyDwjFsBJFaSeKoDxp8YT", 0.00001
   end
 
 end

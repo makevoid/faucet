@@ -21,6 +21,10 @@ class FaucetUI < Roda
   plugin :partials
   plugin :not_found
 
+  def json_route
+    response['Content-Type'] = 'application/json'
+  end
+
   route do |r|
 
     FC = Faucet.new
@@ -37,6 +41,15 @@ class FaucetUI < Roda
       r.is do
         r.get do
           view "redistribute"
+        end
+
+        # debug
+        if APP_ENV == "development"
+          r.post do
+            json_route
+            output = FC.redistribute
+            { output: output }.to_json
+          end
         end
       end
     end
@@ -64,6 +77,7 @@ class FaucetUI < Roda
         end
       end
     end
+
 
     r.assets
   end

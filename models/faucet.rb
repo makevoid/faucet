@@ -3,7 +3,7 @@ require 'bigdecimal'
 
 class Numeric
   def to_b
-    BigDecimal.new self
+    BigDecimal.new self, 8
   end
 end
 
