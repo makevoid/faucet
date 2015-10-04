@@ -1,9 +1,16 @@
 require_relative 'wallet'
+require 'bigdecimal'
 
+class Numeric
+  def to_b
+    BigDecimal.new self
+  end
+end
 
 class Faucet
 
   attr_reader :address, :addresses
+  attr_reader :wallet # temporary
 
   def initialize
     @address, @addresses = load_config
@@ -17,6 +24,18 @@ class Faucet
 
   def balance
     @wallet.balance
+  end
+
+  def addresses_btc
+    addresses.map{ |addr| addr.f :btc }
+  end
+
+  def amount_to_redistribute
+    balance.to_b / 15
+  end
+
+  def redistribute
+    @wallet.sendmany addresses_btc, amount_to_redistribute
   end
 
   private

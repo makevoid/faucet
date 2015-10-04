@@ -8,3 +8,7 @@
       %pre
         btc: #{addr[:btc]},
       %span email: #{addr[:email]}
+
+%h4 Debug:
+%p core address: #{FC.wallet.main_address}
+%p balance at zero confirmations: #{FC.wallet.balance_zeroconf} BTC
