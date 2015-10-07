@@ -21,13 +21,25 @@ class CorbWallet < Roda
     W = Wallet.new
 
     r.root do
-      redirect "/receive"
+      r.redirect "/receive"
     end
 
     r.on "receive" do
       r.is do
         r.get do
           view "receive"
+        end
+      end
+    end
+
+    r.on "send" do
+      r.is do
+        r.get do
+          view "send"
+        end
+
+        r.post do
+          W.send params[:to], params[:amount]
         end
       end
     end

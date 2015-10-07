@@ -1,10 +1,10 @@
-- title = "❤ ProTip"
+- title = "Wallet"
 !!!
 %html
   %head
     %meta{ charset: "utf-8" }
-    %meta{ name: "microtip", content: "#{FC.address_main}" }
-    %title #{title} Faucet
+    %meta{ name: "microtip", content: "#{W.address}" }
+    %title #{title}
     =# assets :css
 
     =# TODO: move in external css
@@ -88,9 +88,23 @@
         background: #f39f16;
       }
 
+      label, input {
+        display: block;
+        margin-top: 4px;
+        margin-bottom: 10px;
+      }
+
+      input {
+        padding: 4px 8px;
+      }
+
+
   %body
     .container
       %h1
-        %a{ href: "https://protip.is" } #{title} Faucet
+        %a{ href: "/" } #{title}
+      %nav
+        %a{ href: "/receive" } Receive
+        %a{ href: "/send" }    Send
       %section.content
         = yield
