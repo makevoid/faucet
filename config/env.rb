@@ -14,8 +14,13 @@ RPC_HOST = '212.47.233.106' # bchain  # scaleway
 bitcoin_conf = "bitcoin.conf"
 
 
-file = File.read File.expand_path( "~/.bitcoin/#{bitcoin_conf}" )
-password = file.strip.match(/rpcpassword=(.+)/)[1]
+if APP_ENV == "development"
+  file = File.read File.expand_path( "~/.bitcoin/#{bitcoin_conf}" )
+  password = file.strip.match(/rpcpassword=(.+)/)[1]
+else
+  password = File.read( File.expand_path "#{APP_PATH}/.bitcoin_rpc_password" ).strip
+end
+
 RPC_PASSWORD = password
 
 
