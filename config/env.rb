@@ -6,27 +6,22 @@ APP_ENV = ENV["RACK_ENV"] || "development"
 path = File.expand_path "../../", __FILE__
 APP_PATH = path
 
-RPC_HOST = 'localhost'
-RPC_HOST = '188.165.223.5'
+# RPC_HOST = 'localhost'
+# RPC_HOST = '188.165.223.5' # sys.mkvd.net
+RPC_HOST = '212.47.233.106' # bchain  # scaleway
+# bchain2 # scalet
+# bitcoin_conf = "sys.bitcoin.conf"
+bitcoin_conf = "bitcoin.conf"
 
 
-conf = "sys.bitcoin.conf"
-# conf = "bitcoin.conf"
-file = File.read File.expand_path( "~/.bitcoin/#{conf}" )
-# grep
+file = File.read File.expand_path( "~/.bitcoin/#{bitcoin_conf}" )
 password = file.strip.match(/rpcpassword=(.+)/)[1]
-
 RPC_PASSWORD = password
 
 
-DEBUG = false
-
-
-
 # models
-require_relative "../models/faucet"
+require_relative "../models/wallet"
 
 
 # lib
-
 require_relative "../lib/monkeypatches"

@@ -1,3 +1,3 @@
-require_relative 'faucet_ui'
+require_relative 'corb_wallet'
 
-run FaucetUI
+run CorbWallet

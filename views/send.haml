@@ -1,0 +1,14 @@
+%h2 Send
+
+%form{ action: "/send" }
+  %label
+    To
+    %input{ type: "text", name: "to", placeholder: "1Address..." }
+
+  %label
+    Amount
+    %span.preview.btc  x BTC
+    %span.preview.fiat x USD
+    %input{ type: "text", name: "amount", placeholder: "1 mBTC" }
+
+  %input{ type: "submit", value: "Send" }
