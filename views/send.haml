@@ -1,6 +1,6 @@
 %h2 Send
 
-%p Available: #{W.balance} BTC
+%p Available: #{wallet.balance} BTC
 
 
 %form{ action: "/send" }
@@ -14,4 +14,4 @@
     %span.preview.fiat x USD
     %input{ type: "text", name: "amount", placeholder: "1 mBTC" }
 
-  %input{ type: "submit", value: "Send" }
+  %input.btn{ type: "submit", value: "Send" }

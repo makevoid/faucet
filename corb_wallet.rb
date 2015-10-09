@@ -16,9 +16,11 @@ class CorbWallet < Roda
     response['Content-Type'] = 'application/json'
   end
 
-  route do |r|
+  def wallet
+    @@wallet ||= Wallet.new
+  end
 
-    W = Wallet.new
+  route do |r|
 
     r.root do
       r.redirect "/receive"
@@ -39,7 +41,7 @@ class CorbWallet < Roda
         end
 
         r.post do
-          W.send params[:to], params[:amount]
+          wallet.send params[:to], params[:amount]
         end
       end
     end

@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/makevoid/bitcoin-client.git
-  revision: e17c8bb710eb4a888469164bff8a3e19871579d4
+PATH
+  remote: ~/apps/bitcoin-client
   specs:
     bitcoin-client (0.0.3)
       rest-client
@@ -17,6 +16,7 @@ GEM
     mime-types (2.6.2)
     netrc (0.10.3)
     rack (1.6.4)
+    redis (3.2.1)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -34,6 +34,7 @@ PLATFORMS
 DEPENDENCIES
   bitcoin-client!
   haml
+  redis
   roda
 
 BUNDLED WITH
