@@ -7,8 +7,10 @@ path = File.expand_path "../../", __FILE__
 APP_PATH = path
 
 # RPC_HOST = 'localhost'
-# RPC_HOST = '188.165.223.5' # sys.mkvd.net
-RPC_HOST = '212.47.233.106' # bchain  # scaleway
+# RPC_HOST = '188.165.223.5'  # sys.mkvd.net
+# RPC_HOST = '212.47.233.106' # bchain  # scaleway
+RPC_HOST = '212.47.236.93'    # bcchain  # scaleway
+
 # bchain2 # scalet
 # bitcoin_conf = "sys.bitcoin.conf"
 bitcoin_conf = "bitcoin.conf"
