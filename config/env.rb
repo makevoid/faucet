@@ -7,14 +7,16 @@ path = File.expand_path "../../", __FILE__
 APP_PATH = path
 
 RPC_HOST = 'localhost'
-RPC_HOST = '188.165.223.5'
+# RPC_HOST = '188.165.223.5'
+RPC_HOST = '212.47.236.93' # bcc - scaleway
 
 
-conf = "sys.bitcoin.conf"
-# conf = "bitcoin.conf"
-file = File.read File.expand_path( "~/.bitcoin/#{conf}" )
-# grep
-password = file.strip.match(/rpcpassword=(.+)/)[1]
+unless APP_ENV == "development"
+  file = File.read File.expand_path( "~/.bitcoin/#{bitcoin_conf}" )
+  password = file.strip.match(/rpcpassword=(.+)/)[1]
+else
+  password = File.read( File.expand_path "#{APP_PATH}/.bitcoin_rpc_password" ).strip
+end
 
 RPC_PASSWORD = password
 
