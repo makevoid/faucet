@@ -1,5 +1,7 @@
 source "http://rubygems.org"
 
+gem "redis"
+
 gem "haml"
 gem "roda"
 

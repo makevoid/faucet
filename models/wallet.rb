@@ -1,7 +1,7 @@
 class Wallet
 
   def initialize
-    @client = BitcoinClient::Client.new 'bitcoinrpc', RPC_PASSWORD, host: RPC_HOST
+    @client = BitcoinClient::Client.new 'bitcoinrpc', RPC_PASSWORD, host: RPC_HOST, cache: true
   end
 
   def main_address
