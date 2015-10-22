@@ -1,3 +1,3 @@
-require_relative 'corb_wallet'
+require_relative 'faucet'
 
-run CorbWallet
+run Faucet

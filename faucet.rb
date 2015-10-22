@@ -1,7 +1,6 @@
 require_relative 'config/env'
 
-
-class CorbWallet < Roda
+class Faucet < Roda
 
   plugin(:assets,
     js: ["vendor/underscore.js", "vendor/qrcode.js"],
@@ -52,4 +51,5 @@ class CorbWallet < Roda
   not_found do
     view "not_found"
   end
+
 end

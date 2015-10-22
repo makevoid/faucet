@@ -1,6 +1,5 @@
-# Corb Wallet
-### Ruby Web Wallet based on Bitcoin Core
+# Faucet
+### Simple Faucet powered by ruby, roda, javascript and more importantly bitcore
 
-powered by Roda, the routing tree framework
 
 fun fun fun!
