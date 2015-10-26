@@ -44,13 +44,13 @@ class FaucetUI < Roda
         end
 
         # debug
-        if APP_ENV == "development"
+        #if APP_ENV == "development"
           r.post do
             json_route
             output = FC.redistribute
             { output: output }.to_json
           end
-        end
+        #end
       end
     end
 
