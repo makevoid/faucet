@@ -17,7 +17,7 @@ class Wallet
   end
 
   def sendmany(addresses, amount)
-    amount = "%.8f" % 0.000001
+    amount = "%.8f" % 0.00001
     # amount = 0.000001
     # amount = "0.000001".to_s
     # addresses_w_amounts = addresses.map do |addr|
