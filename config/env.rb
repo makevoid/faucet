@@ -1,5 +1,6 @@
 require 'bundler/setup'
 Bundler.require :default
+require 'json'
 
 APP_ENV = ENV["RACK_ENV"] || "development"
 
@@ -7,7 +8,7 @@ path = File.expand_path "../../", __FILE__
 APP_PATH = path
 
 RPC_HOST = 'localhost'
-# RPC_HOST = '188.165.223.5'
+# RPC_HOST = '188.165.223.5' # sys
 RPC_HOST = '212.47.236.93' # bcc - scaleway
 
 

@@ -1,9 +1,15 @@
 require_relative 'config/env'
 
+module ViewHelpers
+  def json_route
+    response['Content-Type'] = 'application/json'
+  end
+end
 
 class FaucetUI < Roda
 
   plugin(:assets,
+    css: ["style.css"],
     js: ["vendor/underscore.js", "vendor/qrcode.js"],
     # js: ["vendor/underscore.js", "vendor/qrcode.js"],
     # img: "btn_donate.gif",
@@ -21,38 +27,11 @@ class FaucetUI < Roda
   plugin :partials
   plugin :not_found
 
-  def json_route
-    response['Content-Type'] = 'application/json'
-  end
+  include ViewHelpers
 
   route do |r|
 
     FC = Faucet.new
-
-    r.on "register" do
-      r.is do
-        r.get do
-          view "register"
-        end
-      end
-    end
-
-    r.on "redistribute" do
-      r.is do
-        r.get do
-          view "redistribute"
-        end
-
-        # debug
-        #if APP_ENV == "development"
-          r.post do
-            json_route
-            output = FC.redistribute
-            { output: output }.to_json
-          end
-        #end
-      end
-    end
 
     r.on "status" do
       r.is do
@@ -70,16 +49,65 @@ class FaucetUI < Roda
       end
     end
 
-    r.on "admin" do
+    r.assets
+  end
+
+  not_found do
+    view "not_found"
+  end
+end
+
+
+class FaucetAdminUI < Roda
+
+  plugin(:assets,
+    css: ["style.css"],
+    js: ["vendor/underscore.js", "vendor/qrcode.js"],
+    # js: ["vendor/underscore.js", "vendor/qrcode.js"],
+    # img: "btn_donate.gif",
+  )
+
+  plugin :render, engine: "haml"
+  plugin :partials
+  plugin :not_found
+
+  use Rack::Auth::Basic, "Faucet admin" do |username, password|
+    password == File.read(File.expand_path "~/.faucet_admin_password")
+  end
+
+  include ViewHelpers
+
+  route do |r|
+    FC = Faucet.new
+
+    # /admin
+    r.is do
+      r.get do
+        view "admin"
+      end
+    end
+
+    r.on "register" do
       r.is do
         r.get do
-          view "admin"
+          view "register"
         end
       end
     end
 
+    r.on "redistribute" do
+      r.is do
+        r.get do
+          view "redistribute"
+        end
 
-    r.assets
+        r.post do
+          json_route
+          output = FC.redistribute
+          { output: output }.to_json
+        end
+      end
+    end
   end
 
   not_found do

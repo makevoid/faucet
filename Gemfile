@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+gem "oj"
 gem "redis"
 
 gem "haml"
@@ -11,3 +12,5 @@ gem(
   #  github:  "your_username/your_fork",
   require: 'bitcoin-client'
 )
+
+gem "puma"

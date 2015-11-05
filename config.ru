@@ -1,3 +1,7 @@
 require_relative 'faucet_ui'
+# require 'rack/urlmap'
 
-run FaucetUI
+run Rack::URLMap.new({
+  "/"      => FaucetUI,
+  "/admin" => FaucetAdminUI,
+})
