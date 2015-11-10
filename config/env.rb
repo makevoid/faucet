@@ -23,6 +23,8 @@ end
 DEBUG = false
 
 
+FAUCET_PASS_PATH = "~/.faucet_admin_password"
+
 
 # models
 require_relative "../models/faucet"

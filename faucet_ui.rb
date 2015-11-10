@@ -72,7 +72,7 @@ class FaucetAdminUI < Roda
   plugin :not_found
 
   use Rack::Auth::Basic, "Faucet admin" do |username, password|
-    password == File.read(File.expand_path "~/.faucet_admin_password")
+    password == File.read(File.expand_path FAUCET_PASS_PATH).strip
   end
 
   include ViewHelpers
