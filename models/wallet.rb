@@ -17,9 +17,8 @@ class Wallet
   end
 
   def sendmany(addresses, amount)
-    # balance  = BigDecimal.new balance.to_f, 8
-    # tick     = 15  # every call to #redistribute will give 1/15 of the total amount the faucet has, distributed for every member
-    # amount   = balance / split_by / addresses.size
+    # amount  = (amount / addresses.size).to_f
+    # amount = "%.8f" % amount
     amount = "%.8f" % 0.00001 # TODO: this is a test amount, switch to the real thing
 
     amounts = {}
